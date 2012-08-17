@@ -1,8 +1,8 @@
-$nasmPath = "C:\Program Files (x86)\Nasm";
-$virtualBoxPath = "C:\Program Files\Oracle\VirtualBox";
+$nasmPath = "C:\Program Files (x86)\Nasm"
+$virtualBoxPath = "C:\Program Files\Oracle\VirtualBox"
 
-$env:Path += ";" + $nasmPath;
-$env:Path += ";" + $virtualBoxPath;
+$env:Path += ";" + $nasmPath
+$env:Path += ";" + $virtualBoxPath
 
 # --- Clean START
 rm asm/*.o
