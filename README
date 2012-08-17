@@ -12,7 +12,7 @@ to have fun.
 Windows users:
 For Windows based system there are some more steps to do to achieve a
 totally automatic compilation of the project.
-On the first hand you'll need to install powershell, then configurate it to
+On the first hand you'll need to install powershell, then configure it to
 run arbitrary files without signature (oh you, Windows), running the powershell
 with administrator rights and typing
 
