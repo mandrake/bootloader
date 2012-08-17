@@ -1,1 +1,24 @@
-Just trying to write a bootloader.
+This project aims to obtain some basilar assembly code (with explaination) for
+running the boot code on the first sector of the hard disk from the bios,
+obtaining, substantially, a naive generical bootloader.
+
+Linux users:
+For linux based systems you need only to get nasm, make and qemu, then type:
+
+make qemu-run
+
+to have fun.
+
+Windows users:
+For Windows based system there are some more steps to do to achieve a
+totally automatic compilation of the project.
+On the first hand you'll need to install powershell, then configurate it to
+run arbitrary files without signature (oh you, Windows), running the powershell
+with administrator rights and typing
+
+set-executionpolicy remotesigned.
+
+Next, you need to download nasm and virtualbox, and set the relative binary
+paths in Makefile.ps1 changing the values of $nasmPath and $virtualBoxPath.
+
+Then, have some fun running Makefile.ps1.

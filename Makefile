@@ -1,11 +1,18 @@
-.PHONY: run
-
-run:
-	qemu-img create disk.img 1M
-	nasm mbc.asm -o mbc
-	dd conv=notrunc if=mbc of=mbr.img
-	dd conv=notrunc if=mbr.img of=disk.img
-	qemu -hda ./disk.img
+.PHONY: qemu-run clean
 
 clean:
-	rm disk.img mbc
+	rm asm/*.o
+	rm bin/*
+
+qemu-run:
+	$(MAKE) clean
+	nasm asm/mbc.asm -o asm/mbc.o
+	nasm asm/mbr.asm -o asm/mbr.o
+	nasm asm/sector0.asm -o asm/sector0.o
+	dd conv=notrunc if=asm/mbc.o of=bin/disk.img
+	dd conv=notrunc oflag=append if=asm/mbr.o of=bin/disk.img
+	dd conv=notrunc oflag=append if=asm/sector0.o of=bin/disk.img
+	qemu -hda bin/disk.img
+
+vbox-run:
+	echo "Not available yet"
