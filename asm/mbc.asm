@@ -1,41 +1,28 @@
-; Sposto il cursore in alto a sx
-mov     bh, 0x00        ; pagina 0
-mov     dh, 0x00        ; riga 0
-mov     dl, 0x00        ; colonna 0
-mov     ah, 0x02        ; imposto la funzione
-int     0x10
+[org 0]
 
-; Comincio a stampare
-mov     cx, 0x0001
-mov     bh, 0x00
-mov     al, 0x48        ; 'H'
-mov     ah, 0x0a
-int     0x10
+    jmp 07C0h:start
 
-mov     bh, 0x00        ; pagina 0
-mov     dh, 0x00        ; riga 0
-mov     dl, 0x01        ; colonna 1
-mov     ah, 0x02        ; imposto la funzione
-int     0x10
+start:
+    mov ax, cs
+    mov ds, ax
+    mov es, ax
+    
+read:
 
-; Comincio a stampare
-mov     cx, 0x0001
-mov     bh, 0x00
-mov     al, 0x61        ; 'a'
-mov     ah, 0x0a
-int     0x10
-
-mov     bh, 0x00        ; pagina 0
-mov     dh, 0x00        ; riga 0
-mov     dl, 0x02        ; colonna 1
-mov     ah, 0x02        ; imposto la funzione
-int     0x10
-
-; Comincio a stampare
-mov     cx, 0x0001
-mov     bh, 0x00
-mov     al, 0x69        ; 'i'
-mov     ah, 0x0a
-int     0x10
+    mov ax, 1000h
+    mov es, ax
+    mov bx, 0
+    
+    mov ah, 2
+    mov al, 1
+    mov ch, 0
+    mov cl, 2
+    mov dh, 0
+    mov dl, 80h
+    int 13h
+    
+    jc  read
+    
+    jmp 1000h:0000
 
 times 446-($-$$) db 0
